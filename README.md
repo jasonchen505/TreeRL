@@ -50,7 +50,7 @@ If you find this work is helpful to your research, please consider citing our pa
 
 ```
 @inproceedings{treerl,
-  title={GraphMAE: Self-Supervised Masked Graph Autoencoders},
+  title={TreeRL: LLM Reinforcement Learning with On-Policy Tree Search},
   author={Hou, Zhenyu* and Hu, Ziniu* and Li, Yujiang* and Lu, Rui* and Tang, Jie and Dong, Yuxiao},
   booktitle={ACL},
   year={2025}
