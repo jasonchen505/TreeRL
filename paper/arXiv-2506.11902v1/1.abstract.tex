@@ -1,0 +1,34 @@
+\begin{abstract}
+% Reinforcement learning (RL) has effectively enhances large language models' (LLMs) reasoning capabilities. 
+% Reinforcement learning (RL) with tree search has demonstrated superior performance in traditional reasoning tasks and tree search can effectively improve search diversity and efficiency. Though RL is playing an increasingly critical role in language model reasoning, it largely relies on independent multiple response sampling and remains under-explored how to further empower RL for language model with on-policy tree search. 
+% We propose \model, a reinforcement learning framework with on-policy tree search and process supervision. 
+% We first present an efficient and effective tree search strategy, \treemodel. Instead of generating trees in a step-by-step manner, \treemodel forks branches from uncertain intermediate steps to promote exploration and efficiency, enabling diverse responses with minimal iterations. 
+% Then, we integrate \treemodel with reinforcement learning and further optimize the RL with process supervision signal derived from tree search.
+% Experiments on challenging math and code reasoning benchmarks show that \model produce superior performance compared to traditional ChainRL, highlighting the potential of tree search-based reinforcement learning in advancing language model reasoning capabilities.
+ Reinforcement learning (RL) with tree search has demonstrated superior performance in traditional reasoning tasks. Compared to conventional independent chain sampling strategies with outcome supervision, tree search enables better exploration of the reasoning space and provides dense, on-policy process rewards during RL training but remains under-explored in On-Policy LLM RL.
+ We propose \model, a reinforcement learning framework that directly incorporates on-policy tree search for RL training. Our approach includes intermediate supervision and eliminates the need for separate reward model training. Existing approaches typically train a separate process reward model, which can suffer from distribution mismatch and reward hacking. 
+ We also introduce a cost-effective tree search approach that achieves higher search efficiency under the same generation token budget by strategically branching from high-uncertainty intermediate steps rather than using random branching. 
+ Experiments on challenging math and code reasoning benchmarks demonstrate that \model achieves superior performance compared to traditional ChainRL, highlighting the potential of tree search for LLM. 
+ \model is open-sourced at \url{https://github.com/THUDM/TreeRL}. 
+
+ 
+\hide{
+Reinforcement learning (RL) with tree search has demonstrated superior performance in traditional reasoning tasks.
+While RL is becoming increasingly important in language model reasoning, 
+\ZN{This claim is too weak. We shall not say we do this research because it's "unexplored", but pointing why it's necessary; e.g., it provides fine-grained dense / process reward that traditional iid sampling is not able to get (and what's the potential risk)}
+the potential of on-policy tree search to further empower RL for language models remains largely unexplored.
+We propose \model, a reinforcement learning framework that incorporates on-policy tree search and process supervision\ZN{This part is also unclear, never introduce what is process supervision and what is on-policy tree search. One way is saying people have been using tree search to collect off-policy supervision traces to train PRM and use for RL, but that PRM can be easily hacked and not on-policy, so in this paper we try to explore whether we can directly use on-policy tree search to collect on-policy intermediate supervision to directly do RL without training a seperate reward model}. We first introduce \treemodel, an efficient and effective tree search strategy. Unlike traditional step-by-step tree generation, \treemodel promotes exploration and efficiency by forking branches from uncertain intermediate reasoning steps.\ZN{This is also a bit unclear; hard to understand what is uncertain steps, and why it improve "efficiency" and "exploration". I personally lean towards we emphasize more on the on-policy part, and this tree sampling is a side-novelty but maybe not main contribution (otherwise you need to compare with many other tree-sampling algorithms)}
+We then integrate \treemodel with reinforcement learning and further optimize the RL with process supervision signals derived from the tree search.
+Experiments on challenging math and code reasoning benchmarks demonstrate that \model achieves superior performance compared to traditional ChainRL, highlighting the potential of tree search for LLM.
+}
+
+% Current RL methods for LLMs rely on multi-trajectory sampling, neglecting tree search (e.g., MCTS), which faces efficiency and effectiveness challenges due to step-by-step generation and inferior performance under fixed inference costs. 
+
+\hide{
+Large language models have demonstrated remarkable capabilities in complex reasoning tasks. 
+However, reinforcement learning approaches like Monte Carlo Tree Search face limitations in both effectiveness and efficiency. 
+We present \model, which combines an efficient tree-based search strategy with process supervision signals. 
+Our approach forks new branches from uncertain intermediate tokens rather than breaking answers into smaller steps, requiring fewer iterations while maintaining exploration effectiveness. Additionally, we leverage the generated trees to provide process supervision signals through advantage calculations, avoiding reward hacking without external reward models. Experiments on college-level and competition-level reasoning benchmarks show that \model outperforms traditional independent sampling approaches, highlighting the potential of tree search-based reinforcement learning in advancing language model reasoning capabilities.
+}
+\end{abstract}
+

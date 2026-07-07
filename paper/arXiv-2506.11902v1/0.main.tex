@@ -1,0 +1,237 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+\usepackage[final]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+%Including images in your LaTeX document requires adding
+%additional package(s)
+\usepackage{graphicx}
+
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+% \usepackage[table]{xcolor}         % colors
+
+
+\usepackage{bm}
+% \usepackage{biblatex}
+
+\usepackage{verbatim}
+\usepackage{balance}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{threeparttable}
+\usepackage{enumitem}
+\usepackage{makecell}
+\usepackage{bbding}
+% \usepackage{caption}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{wrapfig}
+% \usepackage{subcaption}
+\usepackage[export]{adjustbox}
+% \addbibresource{ref.bib}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{pifont}
+
+\usepackage{algorithm}
+\usepackage{algpseudocodex}
+
+
+\newtheorem{theorem}{Theorem}
+
+\input{math_commands.tex}
+
+\newcommand{\yuxiao}[1]{\textbf{\color{red}[(YD: #1 )]}}
+
+\newcommand{\lurui}[1]{\textbf{\color{red}[(LR: #1 )]}}
+
+\newcommand*{\para}[1]{\noindent\textbf{#1}}
+%% mathematical symbols
+\newcommand*{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand*{\mat}[1]{\ensuremath{\bm{#1}}}
+\newcommand*{\vect}[1]{\ensuremath{\bm{#1}}}
+\newcommand*{\set}[1]{\ensuremath{\mathcal{#1}}}
+
+\newcommand{\vpara}[1]{\vspace{0.04in}\noindent\textbf{#1}\xspace}
+\newcommand{\beq}[1]{{\small \begin{equation}#1\end{equation}}}
+\newcommand{\beqn}[1]{{\small\begin{eqnarray}#1\end{eqnarray}}}
+\newcommand{\besp}[1]{\begin{split}#1\end{split}}
+\newcommand{\cmark}{\textcolor{green}{\ding{51}}}%
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}%
+
+\newcommand{\model}{TreeRL\xspace}
+\newcommand{\treemodel}{EPTree\xspace}
+\newcommand{\hide}[1]{}
+
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+%\title{\model: LLM Reinforcement Learning with on-policy Tree Search}
+\title{\model: LLM Reinforcement Learning with On-Policy Tree Search}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a separate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+\author{
+  Zhenyu Hou\textsuperscript{*,1} \quad
+  Ziniu Hu\textsuperscript{*,2} \quad
+  Yujiang Li\textsuperscript{*,1} \quad
+  Rui Lu\textsuperscript{*,1} \quad
+  Jie Tang\textsuperscript{1} \quad  Yuxiao Dong\textsuperscript{1} 
+  \\
+      \textsuperscript{1}Tsinghua University \quad
+    \textsuperscript{2}California Institute of Technology 
+  }
+
+
+
+%\author{
+%  \textbf{First Author\textsuperscript{1}},
+%  \textbf{Second Author\textsuperscript{1,2}},
+%  \textbf{Third T. Author\textsuperscript{1}},
+%  \textbf{Fourth Author\textsuperscript{1}},
+%\\
+%  \textbf{Fifth Author\textsuperscript{1,2}},
+%  \textbf{Sixth Author\textsuperscript{1}},
+%  \textbf{Seventh Author\textsuperscript{1}},
+%  \textbf{Eighth Author \textsuperscript{1,2,3,4}},
+%\\
+%  \textbf{Ninth Author\textsuperscript{1}},
+%  \textbf{Tenth Author\textsuperscript{1}},
+%  \textbf{Eleventh E. Author\textsuperscript{1,2,3,4,5}},
+%  \textbf{Twelfth Author\textsuperscript{1}},
+%\\
+%  \textbf{Thirteenth Author\textsuperscript{3}},
+%  \textbf{Fourteenth F. Author\textsuperscript{2,4}},
+%  \textbf{Fifteenth Author\textsuperscript{1}},
+%  \textbf{Sixteenth Author\textsuperscript{1}},
+%\\
+%  \textbf{Seventeenth S. Author\textsuperscript{4,5}},
+%  \textbf{Eighteenth Author\textsuperscript{3,4}},
+%  \textbf{Nineteenth N. Author\textsuperscript{2,5}},
+%  \textbf{Twentieth Author\textsuperscript{1}}
+%\\
+%\\
+%  \textsuperscript{1}Affiliation 1,
+%  \textsuperscript{2}Affiliation 2,
+%  \textsuperscript{3}Affiliation 3,
+%  \textsuperscript{4}Affiliation 4,
+%  \textsuperscript{5}Affiliation 5
+%\\
+%  \small{
+%    \textbf{Correspondence:} \href{mailto:email@domain}{email@domain}
+%  }
+%}
+
+\newcommand{\ZN}[1]{\textcolor{red}{[Ziniu: #1]}}
+
+\begin{document}
+\maketitle
+
+% \newcommand{\ziniu}[1]{\textbf{\color{red}[Ziniu: #1]}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+    \footnotetext[1]{Equal contribution; order is alphabetical.}
+    % \footnotetext[2]{}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\input{1.abstract}
+\input{2.introduction}
+\input{4.method}
+\input{5.experiment}
+\input{3.related_work}
+\input{6.conclusion}
+
+
+\vpara{Acknowledgment.} This work has been in part supported by the Natural Science Foundation of China (NSFC) 62495063, Tsinghua University (Department of Computer Science and Technology) - Siemens Ltd., China Joint Research Center for Industrial Intelligence and Internet of Things (JCIIOT), and the New Cornerstone Science Foundation through the XPLORER PRIZE.
+The corresponding author: Yuxiao Dong (yuxiaod@tsinghua.edu.cn). 
+
+
+% \clearpage
+% \section*{Acknowledgments}
+
+% This document has been adapted
+
+
+% Bibliography entries for the entire Anthology, followed by custom entries
+%\bibliography{anthology,custom}
+% Custom bibliography entries only
+
+% \bibliography{custom}
+% \bibliographystyle{plain}
+\bibliography{reference}
+
+\appendix
+
+
+%\section{Example Appendix}
+%\label{sec:appendix}
+%This is an appendix.
+
+\newpage
+
+\input{7.appendix}
+
+
+\end{document}

@@ -1,0 +1,9 @@
+\section{Conclusion}
+This work presents \model, an RL approach that combines tree search with process supervision to enhance LLM reasoning. \treemodel improves response diversity and performance over traditional methods like MCTS and i.i.d multi-chain sampling. Then, we conduct reinforcement learning with \treemodel and the derived process supervision from tree search. 
+Experiments on math reasoning tasks show that the \model outperforms existing techniques, highlighting the potential of RL with tree search to advance LLM in complex reasoning tasks.
+
+
+\section{Limitation}
+In this work, we propose to improve reinforcement learning with on-policy tree search. While this approach demonstrates promising performance, it does come with several limitations. First, current LLM inference engines do not offer special optimizations for tree search, meaning the proposed \treemodel still requires 2+ iterations, resulting in a performance that is approximately 2× slower than multi-chain sampling. Additionally, we utilize process supervision from tree search for RL training and attempt to optimize it from the perspective of advantage and re-weighting.
+Further efforts, including how to assign appropriate weights to the importance of different steps, how to define more meaningful process signals from the tree structure, and how to implement step-level reward normalization, deserve more exploration.
+
